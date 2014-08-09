@@ -90,9 +90,10 @@ func (c *Consistent) Len() int {
 }
 
 func (c *Consistent) updateList() {
-	c.sortedList = uints{}
+	list := c.sortedList[:0]
 	for k, _ := range c.circle {
-		c.sortedList = append(c.sortedList, k)
+		list = append(list, k)
 	}
-	sort.Sort(c.sortedList)
+	sort.Sort(list)
+	c.sortedList = list
 }
