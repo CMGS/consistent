@@ -85,6 +85,10 @@ func (c *Consistent) Remove(key string) {
 	c.updateList()
 }
 
+func (c *Consistent) Len() int {
+	return c.sortedList.Len()
+}
+
 func (c *Consistent) updateList() {
 	c.sortedList = uints{}
 	for k, _ := range c.circle {
