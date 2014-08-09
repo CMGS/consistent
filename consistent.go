@@ -86,7 +86,7 @@ func (c *Consistent) Remove(key string) {
 }
 
 func (c *Consistent) Len() int {
-	return len(c.sortedList)
+	return c.sortedList.Len()
 }
 
 func (c *Consistent) updateList() {
