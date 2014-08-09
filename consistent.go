@@ -71,7 +71,7 @@ func (c *Consistent) Get(name string, offset int) (string, error) {
 	}
 	key := c.hashKey(name)
 	i := c.search(key)
-	i = (i + offset) % len(c.sortedList.Len())
+	i = (i + offset) % c.Len()
 	return c.circle[c.sortedList[i]], nil
 }
 
