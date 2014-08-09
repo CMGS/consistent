@@ -62,7 +62,7 @@ func (c *Consistent) search(key uint32) int {
 	return i
 }
 
-func (c *Consistent) Get(name string) (string, error) {
+func (c *Consistent) Get(name string, offset int) (string, error) {
 	c.Lock()
 	defer c.Unlock()
 
@@ -71,6 +71,7 @@ func (c *Consistent) Get(name string) (string, error) {
 	}
 	key := c.hashKey(name)
 	i := c.search(key)
+	i = (i + offset) % len(c.sortedList.Len())
 	return c.circle[c.sortedList[i]], nil
 }
 
